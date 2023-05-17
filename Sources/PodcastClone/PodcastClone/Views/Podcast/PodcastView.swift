@@ -18,7 +18,7 @@ struct PodcastView: View {
     var frequency: String = "Frequency"
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             VStack(alignment: .center) {
                 Image(MineImages.placeholder)
                     .resizable()
