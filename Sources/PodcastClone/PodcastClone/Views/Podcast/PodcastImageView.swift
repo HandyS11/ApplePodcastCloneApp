@@ -3,12 +3,26 @@ import SwiftUI
 struct PodcastImageView: View {
     var podcast: Podcast
     
+    @Binding var isTitleVisible: Bool
+    
     var textColor: Color = MineColors.foreground
     
     var body: some View {
         VStack {
             ZStack(alignment: .top) {
                 LazyVStack {
+                    Rectangle()
+                        .frame(width: 1, height: -60)
+                        .onAppear {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                isTitleVisible = true
+                            }
+                        }
+                        .onDisappear {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                isTitleVisible = false
+                            }
+                        }
                 }
                 Image(podcast.image)
                         .resizable()
@@ -48,6 +62,8 @@ struct PodcastImageView: View {
 
 struct PodcastImageView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastImageView(podcast: loadPodcast(3))
+        let bind = Binding<Bool>(get: { true }, set: { _ in })
+        
+        PodcastImageView(podcast: loadPodcast(3), isTitleVisible: bind)
     }
 }

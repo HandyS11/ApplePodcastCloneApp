@@ -3,7 +3,7 @@ import SwiftUI
 struct PodcastView: View {
     var podcast: Podcast
     
-    var topBackground: Color = .clear
+    var topBackground: Color = MineColors.background
     
     @State private var isTitleVisible = true
     @State private var isHeaderDocked = false
@@ -18,14 +18,14 @@ struct PodcastView: View {
                 MineColors.background
             }
             ScrollView {
-                PodcastHeaderView(podcast: podcast, background: topBackground)
+                PodcastHeaderView(podcast: podcast, isTitleVisible: $isTitleVisible, isHeaderDocked: $isHeaderDocked, background: topBackground)
                 PodcastEpisodeListView(episodes: podcast.episodes!)
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbarBackground(.hidden)
-        .navigationBarColor(UIColor(MineColors.background)
+        .navigationBarColor(isTitleVisible ? .clear : UIColor(MineColors.background)
         .withAlphaComponent(isHeaderDocked ? 1 : 0.9))
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -52,7 +52,7 @@ struct PodcastView: View {
                         Image(systemName: "arrow.down")
                             .tint(isTitleVisible ? .white : MineColors.primary)
                             .padding(8)
-                            .background(isTitleVisible ? MineColors.button : MineColors.foreground)
+                            .background(isTitleVisible ? MineColors.button : MineColors.background)
                             .clipShape(Circle())
                     }
                 }
@@ -74,6 +74,6 @@ struct PodcastView: View {
 
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastView(podcast: loadPodcast(2))
+        PodcastView(podcast: loadPodcast(2), topBackground: .purple)
     }
 }
