@@ -1,10 +1,3 @@
-//
-//  EmptyView.swift
-//  PodcastClone
-//
-//  Created by etudiant on 17/05/2023.
-//
-
 import SwiftUI
 
 struct EmptyView: View {

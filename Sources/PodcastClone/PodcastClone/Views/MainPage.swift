@@ -1,13 +1,8 @@
-//
-//  MainPage.swift
-//  PodcastClone
-//
-//  Created by etudiant on 17/05/2023.
-//
-
 import SwiftUI
 
 struct MainPage: View {
+    var podcasts: [Podcast] = []
+    
     @State private var selected = 3
     
     var body: some View {
@@ -30,7 +25,7 @@ struct MainPage: View {
                 }
                 .tag(2)
             
-            PodcastListView()
+            PodcastListView(podcasts: podcasts)
                 .tabItem {
                     VStack {
                         Image(systemName: "book.closed.fill")
@@ -55,6 +50,6 @@ struct MainPage: View {
 
 struct MainPage_Previews: PreviewProvider {
     static var previews: some View {
-        MainPage()
+        MainPage(podcasts: loadAllPodcasts())
     }
 }

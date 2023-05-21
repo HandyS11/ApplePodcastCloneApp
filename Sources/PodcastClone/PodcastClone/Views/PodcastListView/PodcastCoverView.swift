@@ -1,25 +1,21 @@
-//
-//  PodcastCoverView.swift
-//  PodcastClone
-//
-//  Created by etudiant on 17/05/2023.
-//
-
 import SwiftUI
 
 struct PodcastCoverView: View {
-    var podcast: Podcast = Podcast(title: "Nadie Sabe Nada | Marlon something", author: "Somebody", date: "29 avril 2023", note: 5, nbVote: 42, theme: "theme", frequency: "Tous les jours", episodes: nil)
+    var podcast: Podcast
     
     var body: some View {
         VStack(alignment: .leading) {
-            Image(MineImages.placeholder)
+            Image(podcast.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(10)
-            Text("Chaleur Humaine")
+            Text(podcast.name)
                 .font(.title2)
-            Text("Mise à jour : mardi")
+                .foregroundColor(MineColors.foreground)
+                .lineLimit(1)
+            Text("Mise à jour : hier")
                 .font(.title3)
+                .lineLimit(1)
                 .foregroundColor(Color.gray)
         }
     }
@@ -27,6 +23,6 @@ struct PodcastCoverView: View {
 
 struct PodcastCoverView_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastCoverView()
+        PodcastCoverView(podcast: loadPodcast(2))
     }
 }
