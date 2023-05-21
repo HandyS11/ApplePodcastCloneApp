@@ -12,7 +12,7 @@ struct PodcastImageView: View {
             ZStack(alignment: .top) {
                 LazyVStack {
                     Rectangle()
-                        .frame(width: 1, height: -60)
+                        .frame(width: 1, height: 180)
                         .onAppear {
                             withAnimation(.easeInOut(duration: 0.3)) {
                                 isTitleVisible = true

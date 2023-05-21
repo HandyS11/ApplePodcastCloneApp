@@ -43,6 +43,7 @@ struct PodcastView: View {
             
             ToolbarItem(placement: .principal) {
                 Text(isTitleVisible ? "" : podcast.name)
+                    .fontWeight(.bold)
                     .lineLimit(1)
             }
             
@@ -52,8 +53,18 @@ struct PodcastView: View {
                         Image(systemName: "arrow.down")
                             .tint(isTitleVisible ? .white : MineColors.primary)
                             .padding(8)
-                            .background(isTitleVisible ? MineColors.button : MineColors.background)
+                            .background(isTitleVisible ? MineColors.button : MineColors.gray)
                             .clipShape(Circle())
+                        
+                        Image(systemName: "pause")
+                            .resizable()
+                            .scaledToFit()
+                            .tint(isTitleVisible ? topBackground : MineColors.background)
+                            .padding(3)
+                            .frame(width: 17, height: 17)
+                            .background(isTitleVisible ? .white : MineColors.primary)
+                            .clipShape(Circle())
+                            .offset(x: 15, y: 13)
                     }
                 }
                 .padding(.trailing, -20)
@@ -62,9 +73,9 @@ struct PodcastView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {} label: {
                     Image(systemName: "ellipsis")
-                        .tint(isTitleVisible ? .white : .accentColor)
+                        .tint(isTitleVisible ? .white : MineColors.primary)
                         .padding(15)
-                        .background(isTitleVisible ? MineColors.button : MineColors.background)
+                        .background(isTitleVisible ? MineColors.button : MineColors.gray)
                         .clipShape(Circle())
                 }
             }
